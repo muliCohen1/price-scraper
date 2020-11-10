@@ -117,7 +117,6 @@ function ItemsArea() {
     let tempInputFields = [...inputFields];
     tempInputFields = tempInputFields.filter(value => value['seller'] || value['item'])
     setInputFields(tempInputFields)
-    console.log(inputFields)
     localStorage.setItem('inputFields', JSON.stringify(tempInputFields));
   };
 

@@ -21,7 +21,7 @@ app.post('/', function (req, res) {
     let data = JSON.stringify(req.body);
     let headersSent = false;
     fs.writeFileSync('buyingData.json', data);
-    // setInterval(() => {
+    function startScrape() {
         exec(`py soup.py`, (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
@@ -37,7 +37,9 @@ app.post('/', function (req, res) {
                 headersSent = true;
             }
         });  
-    // }, 1.2e+6)
+    }
+    startScrape();
+    setInterval(() => startScrape, 1.2e+6)
 })
  
 app.listen(3001,'0.0.0.0') //not the default 127.0.0.0(localhost) in order to access from another computer
